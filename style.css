@@ -14,12 +14,14 @@
 
 html {
   /* overflow: hidden; */
-  max-width: 800px;
-  margin: auto;
-  height:50%
+  height:50%;
+  background-color: #08090C;
 }
 
 body {
+  max-width: 800px;
+  margin: auto;
+  padding: 32px;
   background-color: #111318;
   color: #DDDDDD;
   font-family: 'Open Sans', Arial, sans-serif;
@@ -49,9 +51,9 @@ img {
   vertical-align:text-bottom;
 }
 
-ul {
+.no-list-style {
     list-style: none;
-    padding: 0;
+    /* padding: 0; */
 }
 
 h1 {
