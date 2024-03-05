@@ -88,3 +88,13 @@ figcaption {
 /* .buttons img {
   margin: 2px;
 } */
+
+::-moz-selection { /* Code for Firefox */
+  color: #111318;
+  background: #F47D7B;
+}
+
+::selection {
+  color: #111318;
+  background: #F47D7B;
+}
