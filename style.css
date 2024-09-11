@@ -44,7 +44,7 @@ a:active {
 }
 
 img {
-  border: 2px solid #F47D7B;
+  /*border: 2px solid #F47D7B;*/
   background-color: #111318;
   display: inline-block;
   overflow: hidden;
