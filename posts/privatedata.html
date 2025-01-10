@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading and writing in a package's private data folder in android</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+  </head>
+  <body>
+    <h1>Reading and writing in a package's private data folder in android</h1>
+
+    <p><i>Jan 10th, 2025</i></p>
+
+    <p>I recently found myself needing to copy the save data from one app to another on android. This apparently used
+    to be easy back before android 13. In 13, they added a data protection feature that prevents apps from accessing
+    each other's files. It makes a lot of sense, but theres no easy way for the user to get around these protections.
+    </p>
+
+    <p>There was a lot of info online about how to solve this, but most of it didn't work for me. Probably has something
+    to do with the fact my phone is running android 15. I'm going to write the steps that worked for me here, to
+    hopefully help some people trying to do the same thing.</p>
+
+    <p>You will need to have USB debugging and ADB set up. There's plenty of info on the web about this.</p>
+
+    <h3>Getting data out of a package's private data folder</h3>
+
+    <p>This is a simple one-liner. Replace &ltyour-package&gt with the name of the package you want to get the files
+    from. Replace &ltfiles/folders&gt with the files/folders you want out of the private folder.</p>
+
+    <p><code>adb exec-out run-as &ltyour-package&gt tar c &ltfiles/folders&gt > output.tar</code></p>
+
+    <h3>Putting data into a package's private data folder</h3>
+
+    <p>This one is a little more complicted. In theory, <code>adb exec-in</code> should work, but it didn't for me. We
+    are going to use <code>run-as</code> from within an adb shell. This allows us to have the same file permissions
+    as the package we are writing the data to, meaning we can write to it's private data folder. Unfortunately, doing
+    this means that we can no longer read most files on the system, such as <code>/sdcard</code>. Thankfully, packages
+    can read from <code>/data/local/tmp</code>, so we can write the file there, and copy it to the private data folder.
+    </p>
+
+    <p><code>adb push output.tar /data/local/tmp</code></p>
+
+    <p>Now we enter the shell and <code>run-as</code> the package.</p>
+
+    <p><code>adb shell</code></p>
+
+    <p><code>run-as &ltyour-package&gt</code></p>
+
+    <p>When this is done, we will be in the private data folder. Now we just need to copy the file and untar it.</p>
+
+    <p><code>cp /data/local/tmp/output.tar .</code></p>
+
+    <p><code>tar xvf output.tar</code></p>
+
+    <p>Aaaand that's it! The files should now be in the new folder. Run an <code>ls</code> just to be sure.</p>
+
+    <p>Thanks for reading.</p>
+
+    <footer>
+        <p style="display: block"><a href="/blog.html">back to posts</a></p>
+
+        <a href="/">back home</a>
+
+        <p><i>Updated Jan 10th, 2025</i></p>
+    </footer>
+  </body>
+</html>
