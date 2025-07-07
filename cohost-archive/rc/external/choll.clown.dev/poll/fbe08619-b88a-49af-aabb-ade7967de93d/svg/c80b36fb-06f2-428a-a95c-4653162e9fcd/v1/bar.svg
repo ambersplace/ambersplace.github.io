@@ -1,6 +1,0 @@
-<svg viewBox="0 0 400 25" xmlns="http://www.w3.org/2000/svg"><style>
-            :root {
-              --fg-fill: rgb(131, 37, 79);
-            }
-            
-            </style><rect id="bg" x="0" y="0" height="100%" width="100%" stroke-width="4" fill="transparent" style="fill:transparent;stroke:var(--fg-fill)"></rect><rect x="0" y="0" height="100%" width="49.504950495049506%" style="fill:var(--fg-fill)"></rect></svg>
